@@ -29,7 +29,7 @@ all: kdpcover.pdf zip
 kdpcover.pdf: kdpcover.tex kdpcover.cls
 	latexmk -pdf $<
 	texsc $<
-	texqc --ignore 'You have requested document class' $<
+# 	texqc --ignore 'You have requested document class' $<
 
 zip: kdpcover.pdf kdpcover.cls
 	rm -rf package
@@ -50,9 +50,11 @@ zip: kdpcover.pdf kdpcover.cls
 	gsed -i "s|0\.0\.0|$${version}|" kdpcover.tex
 	gsed -i "s|00\.00\.0000|$${date}|" kdpcover.tex
 	cp ../../.latexmkrc .
+	cp ../../cactus.pdf .
 	latexmk -pdf kdpcover.tex
+	rm cactus.pdf
 	rm .latexmkrc
-	rm -rf _minted-* *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.run.xml *.out *.ind *.idx *.ilg
+	rm -rf _minted-* *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.run.xml *.out *.exc
 	cat kdpcover.cls | grep RequirePackage | gsed -e "s/.*{\(.\+\)}.*/hard \1/" > DEPENDS.txt
 	cd ..
 	zip -r kdpcover.zip *
