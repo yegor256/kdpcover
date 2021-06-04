@@ -51,19 +51,26 @@
 \putTitle{kdpcover}{Yegor Bugayenko}{I use this \LaTeX{} class to design covers for my books published
 by Kindle Direct Publishing; you also can do it, provided you like the layout and the style.}
 
+% The picture.
+\putPicture{cactus.pdf}
+
 % This is the text on the back of the book, which usually I suggest
 % to omit and keep the back empty and white.
 \putBack{
     You need to either specify the number of pages
     in your PDF book, or provide the path to the PDF.
     In the latter case, the pages will be counted using
-    "qpdf," which has to be installed:\newline\newline
-    \textbackslash{}documentclass[pages=200]\{kdpcover\}\newline
-    \textbackslash{}begin\{document\}\newline
-    \textbackslash{}putSpine\{my book\}\newline
-    \textbackslash{}end\{document\}\newline
-    \newline
-    See the file kdpcover.tex for a full example with all
-    available commands and options.
+    "qpdf," which has to be installed:
+    \newline\newline
+    ?documentclass[pages=200,pdf=book.pdf]\{kdpcover\}\newline
+    ?begin\{document\}\newline
+    ?putSpine\{my book\}\newline
+    ?end\{document\}
+    \newline\newline
+    See the file "kdpcover.tex" for a full example with all
+    available commands and class options.
+    \newline\newline
+    Even more details you can find on GitHub:\newline
+    https://github.com/yegor256/kdpcover
 }
 \end{document}

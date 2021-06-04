@@ -144,11 +144,9 @@
 }
 
 \AtBeginDocument{
-  \raggedbottom%
   \ttfamily%
-  \setlength\topskip{0mm}
-  \setlength\parindent{0pt}
-  \setlength{\parskip}{0pt}%
+  \setlength\parindent{0pt}%
+  \setlength\parskip{0pt}%
   \interfootnotelinepenalty=10000
 }
 
