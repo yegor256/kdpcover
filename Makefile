@@ -29,7 +29,7 @@ all: kdpcover.pdf zip
 kdpcover.pdf: kdpcover.tex kdpcover.cls
 	latexmk -pdf $<
 	texsc $<
-# 	texqc --ignore 'You have requested document class' $<
+	texqc --ignore 'You have requested document class' $<
 
 zip: kdpcover.pdf kdpcover.cls
 	rm -rf package

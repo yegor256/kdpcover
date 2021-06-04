@@ -25,10 +25,15 @@
 \LoadClass{article}
 
 \newcommand*\kdppages{100}
+\newlength\kdpxsize
+\newlength\kdpysize
+
 \RequirePackage{shellesc}
 \RequirePackage{xkeyval}
-\newif\ifsixnine
-\DeclareOptionX{6x9}{\sixninetrue}
+\DeclareOptionX{6x9}{
+  \setlength\kdpxsize{6in}
+  \setlength\kdpysize{9in}
+}
 \DeclareOptionX{pages}{\renewcommand*\kdppages{#1}}
 \makeatletter\newcommand{\exec}[3][1=]{%
   \begingroup
@@ -60,13 +65,13 @@
 % The height of the page is 9 inches plus 0.125 "bleed" on top and
 % on the bottom.
 % Check this doc: https://kdp.amazon.com/en_US/help/topic/G201953020
-\newlength{\kdpheight}%
-\setlength{\kdpheight}{0.125in + 9in + 0.125in}%
+\newlength\kdpheight
+\setlength\kdpheight{0.125in + \kdpysize + 0.125in}
 % The width is 6 inches plus 0.125 "bleed" on each side. The width of the
 % "spine" depends on the amount of pages in the book. Also, there is a
 %
-\newlength{\kdpwidth}%
-\setlength{\kdpwidth}{0.125in + 6in + 0.0025in * \kdppages + 6in + 0.125in}%
+\newlength\kdpwidth
+\setlength\kdpwidth{0.125in + \kdpxsize + 0.0025in * \kdppages + \kdpxsize + 0.125in}
 \RequirePackage{geometry}
   \geometry{paperwidth=\kdpwidth,paperheight=\kdpheight,left=0pt,right=0pt,top=0pt,bottom=0pt}
 \RequirePackage[absolute]{textpos}
@@ -115,16 +120,22 @@
   \end{textblock}
 }
 
-\newcommand\putTitle[3]{
+\newcommand\putTitle[1]{
   \begin{textblock}{5}(10,9)
     \fontsize{32}{32}\selectfont\textbf{#1}
   \end{textblock}
+}
+
+\newcommand\putAuthor[1]{
   \begin{textblock}{4}(10,10)
-    \large\textbf{by #2}
+    \large\textbf{by #1}
   \end{textblock}
+}
+
+\newcommand\putTLDR[1]{
   \begin{textblock}{5}(10,11)
     \raggedright
-    TL;DR #3
+    TL;DR #1
   \end{textblock}
 }
 
