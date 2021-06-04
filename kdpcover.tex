@@ -68,10 +68,10 @@ by Kindle Direct Publishing; you also can do it, provided you like the layout an
     In the latter case, the pages will be counted using
     "qpdf," which has to be installed:
     \newline\newline
-    ?documentclass[pages=200,pdf=book.pdf]\{kdpcover\}\newline
-    ?begin\{document\}\newline
-    ?putSpine\{my book\}\newline
-    ?end\{document\}
+    \char`\\documentclass[pages=200,pdf=book.pdf]\string{kdpcover\string}\newline
+    \char`\\begin\string{document\string}\newline
+    \char`\\putSpine\string{my book\string}\newline
+    \char`\\end\string{document\string}
     \newline\newline
     See the file "kdpcover.tex" for a full example with all
     available commands and class options.
