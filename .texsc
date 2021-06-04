@@ -1,0 +1,12 @@
+--pws=aspell.en.pws
+--ignore=nospell
+--ignore=equation*
+--ignore=setminted
+--ignore=minted:pp,newminted:opp
+--ignore=newtcbox:pp
+--ignore=lref:p,lrefs:pp
+--ignore=tikzstyle,tikzpicture,usetikzlibrary
+--ignore=tikz:op
+--ignore=textcolor:pp
+--ignore=newmdenv:op
+--ignore=ff,nospell,citet,citep
