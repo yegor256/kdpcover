@@ -7,7 +7,7 @@ The problem this class solves is [the necessity](https://kdp.amazon.com/en_US/he
 to change the size of the cover PDF respectfully 
 to the number of pages in the book — the bigger
 the book, the larger must be the cover. The provided class makes necessary
-calculations on-fly, using the `qpdf` took from GhostScript. Obviously,
+calculations on-fly, using the [`qpdf`](http://qpdf.sourceforge.net/) tool. Obviously,
 you need to have it installed. Also, you must
 run `pdflatex` with the `--shell-escape` option, in order to allow LaTeX to run `qpdf`.
 
