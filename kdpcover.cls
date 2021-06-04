@@ -44,8 +44,9 @@
   \exec[noprint]{totalpages.exc}{qpdf --show-npages #1 | tr -d '[[:space:]]' | \{ cat; echo \%; \}}%
   \renewcommand{\kdppages}{\primitiveinput totalpages.exc }
 }
-\ProcessOptionsX
+\ProcessOptionsX\relax
 
+\RequirePackage{anyfontsize}
 \RequirePackage{tikz}
   \usetikzlibrary{positioning}
   \usetikzlibrary{shapes}
@@ -71,7 +72,12 @@
 \RequirePackage[absolute]{textpos}
   \TPGrid{16}{16}
 
-\newcommand\printSpine[2]{
+\newcommand\putSpine[2]{
+  \begin{textblock}{2.4}[0.5,0](8,0)
+    \begin{tikzpicture}
+      \node [rectangle, inner sep=0em, fill=black, minimum width=2.4\TPHorizModule, minimum height=16\TPVertModule] at (0,0) {};
+    \end{tikzpicture}
+  \end{textblock}
   \begin{textblock}{1}[0.5,0](8,2)
     \begin{tikzpicture}
       \node [color=white, inner sep=0cm, outer sep=0cm, rotate=270, minimum height=\TPHorizModule] at (0,0) {
@@ -84,26 +90,32 @@
   \end{textblock}
 }
 
-\newcommand\printPicture[1]{
+\newcommand\putPicture[1]{
   \begin{textblock}{4}(10,2)
     \includegraphics[width=\textwidth]{#1}
   \end{textblock}
 }
 
-\newcommand\printVolume[1]{
+\newcommand\putVolume[1]{
   \begin{textblock}{2}[1,1](15,14)
     \raggedleft
     \includegraphics[height=0.4in]{images/volume-#1}
   \end{textblock}
 }
 
-\newcommand\printPrice[1]{
+\newcommand\putPrice[1]{
   \begin{textblock}{4}[0,1](1,2)
     \small #1
   \end{textblock}
 }
 
-\newcommand\printTitle[3]{
+\newcommand\putBack[1]{
+  \begin{textblock}{5}[0,0](1,3)
+    \raggedright\small #1
+  \end{textblock}
+}
+
+\newcommand\putTitle[3]{
   \begin{textblock}{5}(10,9)
     \fontsize{32}{32}\selectfont\textbf{#1}
   \end{textblock}
@@ -116,7 +128,7 @@
   \end{textblock}
 }
 
-\newcommand\printVersion[1]{
+\newcommand\putVersion[1]{
   \begin{textblock}{4}[0,1](10,14)
     #1
     \quad
@@ -124,10 +136,10 @@
   \end{textblock}
 }
 
-\newcommand\printCopyright[2]{
+\newcommand\putCopyright[2]{
   \begin{textblock}{4}[0,1](1,14)
     \small (c)
-    #1-\the\year{} #2
+    #1 #2
   \end{textblock}
 }
 

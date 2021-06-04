@@ -22,6 +22,48 @@
 
 \documentclass[pages=200,6x9]{kdpcover}
 \begin{document}
-\printSpine{the adventures of tom sawyer, vol. 1}
-\printVolume{1}
+% Here we put the vertical black spine line with two white elements
+% inside: the text at the top and the logo at the bottom. Make sure
+% the text is short enough so that it doesn't touch the logo. It's
+% a good practice to mention the volume number at the end of the text,
+% if you have more than one volume, e.g. "my book, vol. 1". I suggest
+% using small caps in the text only.
+\putSpine{kdpcover, a \LaTeX{} class for KDP books}{./images/signature}
+
+% This one prints the volume picture. It is intentionally made large,
+% in order to make it obvious.
+\putVolume{1}
+
+% Here we print the version and it will also add the date of the latest
+% Git commit in the current directory. If it's not a Git repository,
+% the date won't be printed.
+\putVersion{0.0.0}
+
+% This prints the price, which is a good practice to mention, I believe.
+\putPrice{\$0.00}
+
+% This one prints the copyright short message with the year and the
+% name of the autor.
+\putCopyright{\the\year}{Yegor Bugayenko}
+
+% Here we print the title of the book, the author again, and the
+% TL;DR paragraph, which summarizies the message of the entire book.
+\putTitle{kdpcover}{Yegor Bugayenko}{I use this \LaTeX{} class to design covers for my books published
+by Kindle Direct Publishing; you also can do it, provided you like the layout and the style.}
+
+% This is the text on the back of the book, which usually I suggest
+% to omit and keep the back empty and white.
+\putBack{
+    You need to either specify the number of pages
+    in your PDF book, or provide the path to the PDF.
+    In the latter case, the pages will be counted using
+    "qpdf," which has to be installed:\newline\newline
+    \textbackslash{}documentclass[pages=200]\{kdpcover\}\newline
+    \textbackslash{}begin\{document\}\newline
+    \textbackslash{}putSpine\{my book\}\newline
+    \textbackslash{}end\{document\}\newline
+    \newline
+    See the file kdpcover.tex for a full example with all
+    available commands and options.
+}
 \end{document}

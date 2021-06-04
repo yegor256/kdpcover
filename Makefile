@@ -61,4 +61,3 @@ zip: kdpcover.pdf kdpcover.cls
 
 clean:
 	git clean -dfX
-	cd samples && make clean && cd ..
