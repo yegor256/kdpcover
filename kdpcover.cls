@@ -35,7 +35,7 @@
   \setlength\kdpysize{9in}
 }
 \DeclareOptionX{pages}{\renewcommand*\kdppages{#1}}
-\makeatletter\newcommand{\exec}[3][1=]{%
+\makeatletter\newcommand{\kdpexec}[3][1=]{%
   \begingroup
   \let\%\@percentchar
   \let\{\@charlb
@@ -46,16 +46,13 @@
 }\makeatother
 \makeatletter\let\primitiveinput\@@input\makeatother%
 \DeclareOptionX{pdf}{
-  \exec[noprint]{totalpages.exc}{qpdf --show-npages #1 | tr -d '[[:space:]]' | \{ cat; echo \%; \}}%
+  \kdpexec[noprint]{totalpages.exc}{qpdf --show-npages #1 | tr -d '[[:space:]]' | \{ cat; echo \%; \}}%
   \renewcommand{\kdppages}{\primitiveinput totalpages.exc }
 }
 \ProcessOptionsX\relax
 
 \RequirePackage{anyfontsize}
 \RequirePackage{tikz}
-  \usetikzlibrary{positioning}
-  \usetikzlibrary{shapes}
-  \usetikzlibrary{fit}
 \RequirePackage[letterspace=-50]{microtype}
 \RequirePackage{xifthen}
 \RequirePackage{xcolor}
@@ -116,25 +113,24 @@
 
 \newcommand\putBack[1]{
   \begin{textblock}{5}[0,0](1,3)
-    \raggedright\small #1
+    \small #1
   \end{textblock}
 }
 
 \newcommand\putTitle[1]{
   \begin{textblock}{5}(10,9)
-    \fontsize{32}{32}\selectfont\textbf{#1}
+    \fontsize{32}{32}\selectfont #1
   \end{textblock}
 }
 
 \newcommand\putAuthor[1]{
   \begin{textblock}{4}(10,10)
-    \large\textbf{by #1}
+    \large by #1
   \end{textblock}
 }
 
 \newcommand\putTLDR[1]{
   \begin{textblock}{5}(10,11)
-    \raggedright
     TL;DR #1
   \end{textblock}
 }
@@ -143,7 +139,7 @@
   \begin{textblock}{4}[0,1](10,14)
     #1
     \quad
-    \exec[]{date.exc}{git log -n 1 --pretty='format:\%ad' --date='format:\%e-\%b-\%Y'}
+    \kdpexec[]{date.exc}{git log -n 1 --pretty='format:\%ad' --date='format:\%e-\%b-\%Y'}
   \end{textblock}
 }
 
@@ -156,6 +152,7 @@
 
 \AtBeginDocument{
   \ttfamily%
+  \raggedright%
   \setlength\parindent{0pt}%
   \setlength\parskip{0pt}%
   \interfootnotelinepenalty=10000
