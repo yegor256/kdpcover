@@ -18,7 +18,7 @@ and then use in the preamble:
 ```tex
 \documentclass[pdf=my-book.pdf]{kdpcover}
 \begin{document}
-% Here you print the cover as you with, but I recommend
+% Here you print the cover as you wish, but I recommend
 % you to use the commands available in the class, such as:
 \putSpine{my book, vol. 1}
 \putAuthor{Yegor Bugayenko}
