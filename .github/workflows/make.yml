@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: yegor256/latexmk-action@0.2.0
+      - uses: yegor256/latexmk-action@0.2.1
         with:
           opts: -pdf
           packages: xkeyval anyfontsize xifthen ifmtarg textpos
