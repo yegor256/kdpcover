@@ -3,7 +3,7 @@ target/
 _minted-*
 *.zip
 *.toc
-*.pdf
+kdpcover.pdf
 *.bbl
 *.bcf
 *.blg
