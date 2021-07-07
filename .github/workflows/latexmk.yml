@@ -1,4 +1,4 @@
-name: make
+name: latexmk
 on:
   push:
     branches: [ master ]
