@@ -28,27 +28,11 @@
 \newlength\kdpxsize
 \newlength\kdpysize
 
-\RequirePackage{shellesc}
+\RequirePackage{iexec}
 \RequirePackage{xkeyval}
-\DeclareOptionX{6x9}{
-  \setlength\kdpxsize{6in}
-  \setlength\kdpysize{9in}
-}
+\DeclareOptionX{6x9}{\setlength\kdpxsize{6in}\setlength\kdpysize{9in}}
 \DeclareOptionX{pages}{\renewcommand*\kdppages{#1}}
-\makeatletter\newcommand{\kdpexec}[3][1=]{%
-  \begingroup
-  \let\%\@percentchar
-  \let\{\@charlb
-  \let\}\@charrb
-  \ShellEscape{#3 > #2}%
-  \endgroup%
-  \ifthenelse{\isempty{#1}}{\input{#2}}{}%
-}\makeatother
-\makeatletter\let\primitiveinput\@@input\makeatother%
-\DeclareOptionX{pdf}{
-  \kdpexec[noprint]{totalpages.exc}{qpdf --show-npages #1 | tr -d '[[:space:]]' | \{ cat; echo \%; \}}%
-  \renewcommand{\kdppages}{\primitiveinput totalpages.exc }
-}
+\DeclareOptionX{pdf}{\renewcommand*{\kdppages}{\iexec{qpdf --show-npages #1 | tr -d '[[:space:]]' | \{ cat; echo \%; \}}}}
 \ProcessOptionsX\relax
 
 \RequirePackage{anyfontsize}
@@ -139,7 +123,7 @@
   \begin{textblock}{4}[0,1](10,14)
     #1
     \quad
-    \kdpexec[]{date.exc}{git log -n 1 --pretty='format:\%ad' --date='format:\%e-\%b-\%Y'}
+    \iexec{git log -n 1 --pretty='format:\%ad' --date='format:\%e-\%b-\%Y'}
   \end{textblock}
 }
 
