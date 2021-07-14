@@ -58,7 +58,7 @@
 \RequirePackage[absolute]{textpos}
   \TPGrid{16}{16}
 
-\newcommand\putSpine[2]{
+\newcommand\putSpine[2][kdpcover-signature]{
   \begin{textblock}{2.4}[0.5,0](8,0)
     \begin{tikzpicture}
       \node [rectangle, inner sep=0em, fill=black, minimum width=2.4\TPHorizModule, minimum height=16\TPVertModule] at (0,0) {};
@@ -72,7 +72,7 @@
     \end{tikzpicture}
   \end{textblock}
   \begin{textblock}{2.4}[0.5,1](8,14)
-    \centerline{\includegraphics[width=0.32in]{#2}}
+    \centerline{\includegraphics[width=0.32in]{#1}}
   \end{textblock}
 }
 
@@ -85,7 +85,7 @@
 \newcommand\putVolume[1]{
   \begin{textblock}{2}[1,1](15,14)
     \raggedleft
-    \includegraphics[height=0.4in]{images/volume-#1}
+    \includegraphics[height=0.4in]{kdpcover-vol-#1}
   \end{textblock}
 }
 

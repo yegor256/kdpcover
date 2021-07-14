@@ -37,7 +37,8 @@ zip: kdpcover.pdf kdpcover.cls
 	cd package
 	mkdir kdpcover
 	cd kdpcover
-	cp -r ../../images .
+	cp ../../kdpcover-vol* .
+	cp ../../kdpcover-signature.pdf .
 	cp ../../README.md .
 	version=$$(cat ../../VERSION.txt)
 	echo "Version is: $${version}"
