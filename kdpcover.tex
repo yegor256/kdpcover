@@ -20,7 +20,15 @@
 % OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 % SOFTWARE.
 
+% Here we set the total count of the pages in the book and set the size
+% of the page to 6x9 inches. You can set your own size like this:
+%   \setlength\kdpxsize{8.1in}
+%   \setlength\kdpysize{12.7in}
+% It's better not to use "pages" option here, but to let it calculate
+% the size of your book from the PDF file. Just say "pdf=book.pdf" and it
+% will be calculated automatically.
 \documentclass[pages=200,6x9]{kdpcover}
+
 \begin{document}
 % Here we put the vertical black spine line with two white elements
 % inside: the text at the top and the logo at the bottom. Make sure

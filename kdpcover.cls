@@ -21,7 +21,7 @@
 % SOFTWARE.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{kdpcover}[00.00.0000 0.0.0 Cover for KDP book]
+\ProvidesClass{kdpcover}[00.00.0000 0.0.0 Cover for Kindle Direct Publishing books]
 \LoadClass{article}
 
 \newcommand*\kdppages{100}
@@ -31,6 +31,8 @@
 \RequirePackage{iexec}
 \RequirePackage{xkeyval}
 \DeclareOptionX{6x9}{\setlength\kdpxsize{6in}\setlength\kdpysize{9in}}
+\DeclareOptionX{7x10}{\setlength\kdpxsize{7in}\setlength\kdpysize{10in}}
+\DeclareOptionX{8x10}{\setlength\kdpxsize{8in}\setlength\kdpysize{10in}}
 \DeclareOptionX{pages}{\renewcommand*\kdppages{#1}}
 \DeclareOptionX{pdf}{\renewcommand*{\kdppages}{\iexec{qpdf --show-npages #1 | tr -d '[[:space:]]' | \{ cat; echo \%; \}}}}
 \ProcessOptionsX\relax
