@@ -26,7 +26,9 @@
 
 \newcommand*\kdppages{100}
 \newlength\kdpxsize
+\setlength\kdpxsize{6in}
 \newlength\kdpysize
+\setlength\kdpysize{9in}
 
 \RequirePackage{iexec}
 \RequirePackage{xkeyval}
