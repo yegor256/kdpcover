@@ -32,7 +32,7 @@
 \setlength\kdp@ysize{9in}
 \makeatother
 
-\RequirePackage{iexec}
+\RequirePackage{/code/iexec/iexec}
 
 \RequirePackage{xkeyval}
 
@@ -41,7 +41,12 @@
 \DeclareOptionX{7x10}{\setlength\kdp@xsize{7in}\setlength\kdp@ysize{10in}}
 \DeclareOptionX{8x10}{\setlength\kdp@xsize{8in}\setlength\kdp@ysize{10in}}
 \DeclareOptionX{pages}{\renewcommand*\kdp@pages{#1}}
-\DeclareOptionX{pdf}{\renewcommand*\kdp@pages{\iexec{qpdf --show-npages #1 | tr -d '[[:space:]]' | \{ cat; echo \%; \}}}}
+\DeclareOptionX{pdf}{%
+  \iexec[trace,quiet,stdout=kdpcover-pages-count.txt]{qpdf --show-npages #1 | tr -d '[[:space:]]' | \{ cat; echo \%; \}}%
+  \newread\kdp@pagescount%
+  \openin\kdp@pagescount=kdpcover-pages-count.txt
+  \read\kdp@pagescount to \kdp@pages%
+}
 \ProcessOptionsX\relax\makeatother
 
 \RequirePackage{anyfontsize}
@@ -51,8 +56,8 @@
 \RequirePackage{graphicx}
 \RequirePackage{calc}
 
-% \RequirePackage{setspace}
-%   \setstretch{1.2}
+\RequirePackage{setspace}
+  \setstretch{1.2}
 
 % The height of the page is 9 inches plus 0.125 "bleed" on top and
 % on the bottom.
