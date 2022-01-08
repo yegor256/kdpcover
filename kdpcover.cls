@@ -84,7 +84,7 @@
   \begin{textblock}{1}[0.5,0](8,2)%
     \begin{tikzpicture}%
       \node [color=white, inner sep=0cm, outer sep=0cm, rotate=270, minimum height=\TPHorizModule] at (0,0) {
-        \Large #1
+        \Large #2
       };%
     \end{tikzpicture}%
   \end{textblock}%
