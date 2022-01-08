@@ -43,7 +43,7 @@ zip: kdpcover.pdf kdpcover.cls
 	cp ../../kdpcover-vol* .
 	cp ../../kdpcover-signature.pdf .
 	cp ../../README.md .
-	version=$$(cat ../../VERSION.txt)
+	version=$$(curl --silent -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/yegor256/kdpcover/releases/latest | jq -r '.tag_name')
 	echo "Version is: $${version}"
 	date=$$(date +%Y/%m/%d)
 	echo "Date is: $${date}"
@@ -61,8 +61,8 @@ zip: kdpcover.pdf kdpcover.cls
 	rm -rf _minted-* *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.run.xml *.out *.exc
 	cat kdpcover.cls | grep RequirePackage | gsed -e "s/.*{\(.\+\)}.*/hard \1/" > DEPENDS.txt
 	cd ..
-	zip -r kdpcover.zip *
-	cp kdpcover.zip ..
+	zip -r kdpcover-$${version}.zip *
+	cp kdpcover-$${version}.zip ..
 	cd ..
 
 clean:
