@@ -1,6 +1,6 @@
 # (The MIT License)
 #
-# Copyright (c) 2021 Yegor Bugayenko
+# Copyright (c) 2021-2022 Yegor Bugayenko
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the 'Software'), to deal
@@ -21,48 +21,54 @@
 # SOFTWARE.
 
 .SHELLFLAGS = -e -x -c
-
 .ONESHELL:
 
-all: kdpcover.pdf test zip
+NAME=kdpcover
 
-kdpcover.pdf: kdpcover.tex kdpcover.cls
+all: $(NAME).pdf test zip
+
+$(NAME).pdf: $(NAME).tex $(NAME).cls
 	latexmk -pdf $<
 	texsc $<
 	texqc --ignore 'You have requested document class' $<
 
-test:
-	cd tests && make && cd ..
+copyright:
+	find . -name '*.tex' -o -name '*.sty' -o -name 'Makefile' | xargs -n1 grep -r "(c) 2021-$$(date +%Y) "
 
-zip: kdpcover.pdf kdpcover.cls
+test: tests/*.tex $(NAME).cls
+	if [ -d tests ]; then
+		cd tests && make && cd ..
+	fi
+
+zip: $(NAME).pdf $(NAME).cls
 	rm -rf package
 	mkdir package
 	cd package
-	mkdir kdpcover
-	cd kdpcover
-	cp ../../kdpcover-vol* .
-	cp ../../kdpcover-signature.pdf .
+	mkdir $(NAME)
+	cd $(NAME)
+	cp ../../$(NAME)-vol* .
+	cp ../../$(NAME)-signature.pdf .
 	cp ../../README.md .
-	version=$$(curl --silent -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/yegor256/kdpcover/releases/latest | jq -r '.tag_name')
+	version=$$(curl --silent -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/yegor256/$(NAME)/releases/latest | jq -r '.tag_name')
 	echo "Version is: $${version}"
 	date=$$(date +%Y/%m/%d)
 	echo "Date is: $${date}"
-	cp ../../kdpcover.cls .
-	gsed -i "s|0\.0\.0|$${version}|" kdpcover.cls
-	gsed -i "s|00\.00\.0000|$${date}|" kdpcover.cls
-	cp ../../kdpcover.tex .
-	gsed -i "s|0\.0\.0|$${version}|" kdpcover.tex
-	gsed -i "s|00\.00\.0000|$${date}|" kdpcover.tex
+	cp ../../$(NAME).cls .
+	gsed -i "s|0\.0\.0|$${version}|" $(NAME).cls
+	gsed -i "s|00\.00\.0000|$${date}|" $(NAME).cls
+	cp ../../$(NAME).tex .
+	gsed -i "s|0\.0\.0|$${version}|" $(NAME).tex
+	gsed -i "s|00\.00\.0000|$${date}|" $(NAME).tex
 	cp ../../.latexmkrc .
 	cp ../../cactus.pdf .
-	latexmk -pdf kdpcover.tex
+	latexmk -pdf $(NAME).tex
 	rm cactus.pdf
 	rm .latexmkrc
 	rm -rf _minted-* *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.run.xml *.out *.exc
-	cat kdpcover.cls | grep RequirePackage | gsed -e "s/.*{\(.\+\)}.*/hard \1/" > DEPENDS.txt
+	cat $(NAME).cls | grep RequirePackage | gsed -e "s/.*{\(.\+\)}.*/hard \1/" > DEPENDS.txt
 	cd ..
-	zip -r kdpcover-$${version}.zip *
-	cp kdpcover-$${version}.zip ..
+	zip -r $(NAME)-$${version}.zip *
+	cp $(NAME)-$${version}.zip ..
 	cd ..
 
 clean:
