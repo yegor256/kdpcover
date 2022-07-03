@@ -41,6 +41,8 @@
 \DeclareOptionX{7x10}{\setlength\kdp@xsize{7in}\setlength\kdp@ysize{10in}}
 \DeclareOptionX{8x10}{\setlength\kdp@xsize{8in}\setlength\kdp@ysize{10in}}
 \DeclareOptionX{pages}{\renewcommand*\kdp@pages{#1}}
+\newif\ifkdp@barless
+\DeclareOptionX{barless}{\kdp@barlesstrue}
 \DeclareOptionX{pdf}{%
   \iexec[trace,quiet,stdout=kdpcover-pages-count.txt]{qpdf --show-npages #1 | tr -d '[[:space:]]' | \{ cat; echo \%; \}}%
   \newread\kdp@pagescount%
@@ -75,12 +77,15 @@
 \RequirePackage[absolute]{textpos}
   \TPGrid{16}{16}
 
+\makeatletter
 \newcommand\putSpine[2][kdpcover-signature]{%
-  \begin{textblock}{2.4}[0.5,0](8,0)%
-    \begin{tikzpicture}%
-      \node [rectangle, inner sep=0em, fill=black, minimum width=2.4\TPHorizModule, minimum height=16\TPVertModule] at (0,0) {};
-    \end{tikzpicture}%
-  \end{textblock}%
+  \ifkdp@barless\else
+    \begin{textblock}{2.4}[0.5,0](8,0)%
+      \begin{tikzpicture}%
+        \node [rectangle, inner sep=0em, fill=black, minimum width=2.4\TPHorizModule, minimum height=16\TPVertModule] at (0,0) {};
+      \end{tikzpicture}%
+    \end{textblock}%
+  \fi
   \begin{textblock}{1}[0.5,0](8,2)%
     \begin{tikzpicture}%
       \node [color=white, inner sep=0cm, outer sep=0cm, rotate=270, minimum height=\TPHorizModule] at (0,0) {
@@ -92,6 +97,7 @@
     \centerline{\includegraphics[width=0.32in]{#1}}%
   \end{textblock}%
 }
+\makeatother
 
 \newcommand\putPicture[1]{%
   \begin{textblock}{4}(10,2)%
