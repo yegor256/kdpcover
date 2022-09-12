@@ -22,6 +22,7 @@
 
 .SHELLFLAGS = -e -x -c -o pipefail
 .ONESHELL:
+SHELL = bash
 
 NAME=kdpcover
 
