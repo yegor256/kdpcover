@@ -1,4 +1,5 @@
 [![make](https://github.com/yegor256/kdpcover/actions/workflows/latexmk.yml/badge.svg)](https://github.com/yegor256/kdpcover/actions/workflows/latexmk.yml)
+[![CTAN](https://img.shields.io/ctan/v/kdpcover)](https://ctan.org/pkg/kdpcover)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/kdpcover/blob/master/LICENSE.txt)
 
 This LaTeX class I use to format covers for [my books](https://www.yegor256.com/books.html), 

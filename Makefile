@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-.SHELLFLAGS = -e -x -c
+.SHELLFLAGS = -e -x -c -o pipefail
 .ONESHELL:
 
 NAME=kdpcover
@@ -40,6 +40,13 @@ test: tests/*.tex $(NAME).cls
 		cd tests && make && cd ..
 	fi
 
+set-version:
+	date=$$(date +%Y/%m/%d)
+	sed -i "s|0\.0\.0|$(version)|" $(NAME).sty
+	sed -i "s|00\.00\.0000|$${date}|" $(NAME).sty
+	sed -i "s|0\.0\.0|$(version)|" $(NAME).tex
+	sed -i "s|00\.00\.0000|$${date}|" $(NAME).tex
+
 zip: $(NAME).pdf $(NAME).cls
 	rm -rf package
 	mkdir package
@@ -49,26 +56,19 @@ zip: $(NAME).pdf $(NAME).cls
 	cp ../../$(NAME)-vol* .
 	cp ../../$(NAME)-signature.pdf .
 	cp ../../README.md .
-	version=$$(curl --silent -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/yegor256/$(NAME)/releases/latest | jq -r '.tag_name')
-	echo "Version is: $${version}"
-	date=$$(date +%Y/%m/%d)
-	echo "Date is: $${date}"
 	cp ../../$(NAME).cls .
-	gsed -i "s|0\.0\.0|$${version}|" $(NAME).cls
-	gsed -i "s|00\.00\.0000|$${date}|" $(NAME).cls
 	cp ../../$(NAME).tex .
-	gsed -i "s|0\.0\.0|$${version}|" $(NAME).tex
-	gsed -i "s|00\.00\.0000|$${date}|" $(NAME).tex
 	cp ../../.latexmkrc .
 	cp ../../cactus.pdf .
 	latexmk -pdf $(NAME).tex
 	rm cactus.pdf
 	rm .latexmkrc
 	rm -rf _minted-* *.aux *.bbl *.bcf *.blg *.fdb_latexmk *.fls *.log *.run.xml *.out *.exc
-	cat $(NAME).cls | grep RequirePackage | gsed -e "s/.*{\(.\+\)}.*/hard \1/" > DEPENDS.txt
+	cat $(NAME).cls | grep RequirePackage | sed -e "s/.*{\(.\+\)}.*/hard \1/" > DEPENDS.txt
 	cd ..
-	zip -r $(NAME)-$${version}.zip *
-	cp $(NAME)-$${version}.zip ..
+	zip -r $(NAME).zip *
+	cp $(NAME).zip ..
+	unzip -l $(NAME).zip
 	cd ..
 
 clean:
