@@ -1,0 +1,11 @@
+hard iexec
+hard xkeyval
+hard anyfontsize
+hard tikz
+hard microtype
+hard xcolor
+hard graphicx
+hard calc
+hard setspace
+hard geometry
+hard textpos
