@@ -1,0 +1,16 @@
+name: l3build
+on:
+  push:
+    branches: master
+  pull_request:
+    branches: master
+jobs:
+  l3build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: teatimeguest/setup-texlive-action@v2.4.1
+        with:
+          package-file: DEPENDS.txt
+          packages: scheme-basic xetex l3build
+      - run: l3build check -q --show-log-on-error

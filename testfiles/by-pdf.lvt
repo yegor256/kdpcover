@@ -1,0 +1,8 @@
+\input{regression-test.tex}
+\documentclass[6x9,pdf=kdpcover.pdf,barless]{kdpcover}
+\begin{document}
+\START
+
+Hello, world!
+
+\END
