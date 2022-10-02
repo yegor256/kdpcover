@@ -1,5 +1,5 @@
 \input{regression-test.tex}
-\documentclass[6x9,pdf=kdpcover.pdf,barless]{kdpcover}
+\documentclass[6x9,pdf=test.pdf,barless]{kdpcover}
 \begin{document}
 \START
 
