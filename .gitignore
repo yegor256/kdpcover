@@ -2,6 +2,8 @@
 target/
 build/
 tests/
+*.cls
+*.tex
 _minted-*
 *.zip
 *.toc
