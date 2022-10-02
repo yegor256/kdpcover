@@ -1,4 +1,4 @@
-[![make](https://github.com/yegor256/kdpcover/actions/workflows/latexmk.yml/badge.svg)](https://github.com/yegor256/kdpcover/actions/workflows/latexmk.yml)
+[![make](https://github.com/yegor256/kdpcover/actions/workflows/l3build.yml/badge.svg)](https://github.com/yegor256/kdpcover/actions/workflows/l3build.yml)
 [![CTAN](https://img.shields.io/ctan/v/kdpcover)](https://ctan.org/pkg/kdpcover)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/kdpcover/blob/master/LICENSE.txt)
 
