@@ -6,7 +6,7 @@ tagfiles = {"build.lua", "kdpcover.dtx"}
 
 uploadconfig = {
   pkg = "kdpcover",
-  version = "0.0.0",
+  version = "0.4.0",
   author = "Yegor Bugayenko",
   uploader = "Yegor Bugayenko",
   email = "yegor256@gmail.com",
