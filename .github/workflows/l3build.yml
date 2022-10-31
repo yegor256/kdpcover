@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
-      - uses: teatimeguest/setup-texlive-action@v2.4.1
+      - uses: teatimeguest/setup-texlive-action@v2.5.0
         with:
           package-file: DEPENDS.txt
           packages: scheme-basic xetex l3build
