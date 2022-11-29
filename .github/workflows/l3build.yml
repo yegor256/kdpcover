@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          repository: 'qpdf/qpdf'
+          path: 'qpdf'
+      - run: cd qpdf && cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo && cmake --build build && cp qpdf ..
       - uses: teatimeguest/setup-texlive-action@v2.5.0
         with:
           update-all-packages: true
