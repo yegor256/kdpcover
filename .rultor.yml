@@ -7,6 +7,14 @@ install: |-
   sudo tlmgr option repository ctan
   sudo tlmgr --verify-repo=none update --self
   sudo tlmgr --verify-repo=none install l3build
+  git clone https://github.com/qpdf/qpdf && \
+    cd qpdf && \
+    cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
+    cmake --build build && \
+    sudo cmake --install build && \
+    cd .. && rm -rf qpdf && \
+    export LD_LIBRARY_PATH=/usr/local/lib && sudo ldconfig && \
+    qpdf --version
 merge:
   script: |-
     l3build check
