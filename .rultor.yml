@@ -9,6 +9,7 @@ install: |-
   sudo tlmgr --verify-repo=none install l3build
 
   sudo apt-get -y install cmake
+  sudo apt-get -y install libjpeg-dev
 
   git clone https://github.com/qpdf/qpdf
   cd qpdf
