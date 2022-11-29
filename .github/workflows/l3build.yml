@@ -14,4 +14,5 @@ jobs:
           update-all-packages: true
           package-file: DEPENDS.txt
           packages: scheme-basic xetex l3build
+      - run: qpdf --version
       - run: l3build check -q --show-log-on-error
