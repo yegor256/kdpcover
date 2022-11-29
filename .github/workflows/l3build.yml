@@ -13,11 +13,16 @@ jobs:
         with:
           repository: 'qpdf/qpdf'
           path: 'qpdf'
-      - run: cd qpdf && cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo && cmake --build build && cp qpdf ..
+      - run: cd qpdf && cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo && cmake --build build
       - uses: teatimeguest/setup-texlive-action@v2.5.0
         with:
           update-all-packages: true
           package-file: DEPENDS.txt
           packages: scheme-basic xetex l3build
+      - uses: actions/cache@v3
+        with:
+          path: qpdf
+          key: qpdf
+      - run: cp qpdf/qpdf /usr/local/bin
       - run: qpdf --version
       - run: l3build check -q --show-log-on-error
