@@ -7,3 +7,4 @@ hard xcolor
 hard setspace
 hard geometry
 hard textpos
+hard etoolbox
