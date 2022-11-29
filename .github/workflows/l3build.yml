@@ -23,6 +23,7 @@ jobs:
         with:
           path: qpdf
           key: qpdf
-      - run: cp qpdf/qpdf /usr/local/bin
+      - run: cd qpdf && tree
+      - run: cp qpdf/target/qpdf /usr/local/bin
       - run: qpdf --version
       - run: l3build check -q --show-log-on-error
