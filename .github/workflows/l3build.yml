@@ -9,20 +9,10 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
-        with:
-          repository: 'qpdf/qpdf'
-          path: 'qpdf'
-      - run: cd qpdf && cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo && cmake --build build
+      - uses: yegor256/qpdf-action@latest
       - uses: teatimeguest/setup-texlive-action@v2.5.0
         with:
           update-all-packages: true
           package-file: DEPENDS.txt
           packages: scheme-basic xetex l3build
-      - uses: actions/cache@v3
-        with:
-          path: qpdf
-          key: qpdf
-      - run: cd qpdf && cmake --install
-      - run: qpdf --version
       - run: l3build check -q --show-log-on-error
