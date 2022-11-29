@@ -8,6 +8,8 @@ install: |-
   sudo tlmgr --verify-repo=none update --self
   sudo tlmgr --verify-repo=none install l3build
 
+  sudo apt-get -y install cmake
+
   git clone https://github.com/qpdf/qpdf
   cd qpdf
   cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
