@@ -58,8 +58,8 @@
 \usepackage{microtype}
 \AddToHook{env/verbatim/begin}{\microtypesetup{protrusion=false}}
 \usepackage{href-ul}
+\usepackage[dtx,margin=0,small]{docshots}
 \usepackage{graphicx}
-\raggedbottom
 \PageIndex
 \EnableCrossrefs
 \CodelineIndex
@@ -81,29 +81,26 @@
 % \section{Introduction}
 %
 
+% \changes{v0.4.0}{2022/11/29}{The \texttt{docshots} package is used to render the documentation.}
 % This class will render you a book cover, suitable for Kindle Direct Publishing (KDP).
 % I use it for \href{https://amzn.to/2WMTXWF}{all my books}.
 % This is how you make your \LaTeX{} document look like:
-%\iffalse
-%<*verb>
-%\fi
-\begin{verbatim}
-\documentclass[pages=200,6x9]{kdpcover}
-\begin{document}
-\putSpine{kdpcover, a LaTeX class for KDP books}
-\putVolume{1}
-\putVersion{0.0.0}
-\putPrice{\$0.00}
-\putCopyright{\the\year}{Yegor Bugayenko}
-\putTitle{kdpcover}
-\putAuthor{Yegor Bugayenko}
-\putTLDR{This book will tell you an interesting story!}
-\putPicture{cactus.pdf}
-\end{document}
-\end{verbatim}
-%\iffalse
-%</verb>
-%\fi
+% \docshotPrerequisite{cactus.pdf}
+% \begin{docshot}
+% \documentclass[pages=200,6x9]{kdpcover}
+% \begin{document}
+% \putSpine{kdpcover, a LaTeX class for KDP books}
+% \putVolume{1}
+% \putVersion{0.0.0}
+% \putPrice{\$0.00}
+% \putCopyright{\the\year}{Yegor Bugayenko}
+% \putTitle{kdpcover}
+% \putAuthor{Yegor Bugayenko}
+% \putTLDR{This book will tell you
+%   an interesting story!}
+% \putPicture{cactus.pdf}
+% \end{document}
+% \end{docshot}
 
 % The problem this class solves is the necessity to change the size of the
 % cover PDF according to the number of pages in the book --- the bigger the book,
@@ -239,7 +236,13 @@
 
 % \changes{v0.2.0}{2021/07/14}{Initial version}
 
-% First, we define a few internal commands:
+% First, we load our parent class:
+% \changes{v0.4.0}{2022/11/29}{The base class is now \texttt{article}.}
+%    \begin{macrocode}
+\LoadClass{article}
+%    \end{macrocode}
+
+% Then, we define a few internal commands:
 %    \begin{macrocode}
 \makeatletter
 \newcommand*\kdp@pages{100}
@@ -439,8 +442,9 @@
 \newcommand\putVersion[1]{%
   \begin{textblock}{4}[0,1](10,14)%
     #1
-    \quad
-    \iexec{git log -n 1 --pretty='format:\%ad' --date='format:\%e-\%b-\%Y'}
+    \IfFileExists{.git}
+      {\quad\iexec{git log -n 1 --pretty='format:\%ad' --date='format:\%e-\%b-\%Y'}}
+      {}
   \end{textblock}%
 }
 %    \end{macrocode}
