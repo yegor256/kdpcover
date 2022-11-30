@@ -4,7 +4,8 @@ install: |-
   sudo gem install texsc:0.6.0
   sudo gem install texqc:0.6.0
   sudo apt-get update
-  sudo apt-get install -y aspell
+  sudo apt-get -y install aspell
+  sudo apt-get -y install ghostscript
   sudo tlmgr option repository ctan
   sudo tlmgr --verify-repo=none update --self
   sudo tlmgr --verify-repo=none install l3build docshots
