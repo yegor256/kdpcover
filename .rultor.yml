@@ -29,6 +29,8 @@ merge:
 release:
   script: |-
     l3build tag ${tag}
+    l3doc || echo NO
+    cat build/doc/kdpcover.log
     l3build ctan --show-log-on-error
     texsc
     texqc
