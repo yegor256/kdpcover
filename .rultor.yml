@@ -16,7 +16,7 @@ install: |-
   cd qpdf
   cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
   cmake --build build
-  sudo cmake --install build
+  sudo cmake --install "$(pwd)/build"
   cd ..
   rm -rf qpdf
   export LD_LIBRARY_PATH=/usr/local/lib
