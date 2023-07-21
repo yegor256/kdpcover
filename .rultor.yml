@@ -1,12 +1,12 @@
 docker:
-  image: yegor256/rultor-image:1.15.0
+  image: yegor256/rultor-image:1.21.0
 install: |-
   sudo gem install texsc:0.6.0
   sudo gem install texqc:0.6.0
   sudo apt-get update
   sudo tlmgr option repository ctan
   sudo tlmgr --verify-repo=none update --self
-  sudo tlmgr --verify-repo=none install l3build docshots
+  sudo tlmgr --verify-repo=none install l3build docshots tools
   sudo tlmgr --verify-repo=none update iexec
 merge:
   script: |-
