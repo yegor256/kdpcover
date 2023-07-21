@@ -6,8 +6,8 @@ install: |-
   sudo apt-get update
   sudo tlmgr option repository ctan
   sudo tlmgr --verify-repo=none update --self
-  sudo tlmgr --verify-repo=none install l3build docshots tools
-  sudo tlmgr --verify-repo=none update iexec
+  sudo tlmgr --verify-repo=none install l3build tools $(cut -d' ' -f2 DEPENDS.txt | uniq)
+  sudo tlmgr --verify-repo=none update l3build tools
 merge:
   script: |-
     l3build check
