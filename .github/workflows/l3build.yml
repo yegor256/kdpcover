@@ -14,6 +14,5 @@ jobs:
         with:
           update-all-packages: true
           package-file: DEPENDS.txt
-          packages: scheme-basic xetex l3build tools
       - run: l3build check -q --show-log-on-error
 
