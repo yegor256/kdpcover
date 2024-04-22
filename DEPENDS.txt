@@ -4,6 +4,7 @@ hard geometry
 hard iexec
 hard microtype
 hard pgf
+hard pgfopts
 hard setspace
 hard textpos
 hard xcolor
