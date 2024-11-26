@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: yegor256/qpdf-action@master
-      - uses: teatimeguest/setup-texlive-action@v3.2.1
+      - uses: teatimeguest/setup-texlive-action@v3.3.4
         with:
           update-all-packages: true
           package-file: DEPENDS.txt
