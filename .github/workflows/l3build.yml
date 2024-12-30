@@ -21,11 +21,13 @@
 # SOFTWARE.
 ---
 name: l3build
-on:
+'on':
   push:
-    branches: master
+    branches:
+      - master
   pull_request:
-    branches: master
+    branches:
+      - master
 jobs:
   l3build:
     runs-on: ubuntu-24.04
@@ -37,4 +39,3 @@ jobs:
           update-all-packages: true
           package-file: DEPENDS.txt
       - run: l3build check -q --show-log-on-error
-

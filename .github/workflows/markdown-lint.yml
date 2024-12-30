@@ -21,8 +21,13 @@
 # SOFTWARE.
 ---
 name: markdown-lint
-on:
+'on':
   push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 jobs:
   markdown-lint:
     runs-on: ubuntu-24.04
