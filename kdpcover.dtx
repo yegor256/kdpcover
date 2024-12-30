@@ -320,7 +320,10 @@
 \newlength\kdp@height
   \setlength\kdp@height{0.125in + \kdp@ysize + 0.125in}
 \newlength\kdp@width
-  \setlength\kdp@width{0.125in + \kdp@xsize + 0.125in + \kdp@xsize + 0.0025in * \kdp@pages}
+  \setlength\kdp@width{
+    0.125in + \kdp@xsize
+    + 0.125in + \kdp@xsize
+    + 0.0025in * \kdp@pages}
 \makeatother
 %    \end{macrocode}
 
