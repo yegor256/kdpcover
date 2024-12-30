@@ -28,6 +28,18 @@ install: |-
   sudo tlmgr --verify-repo=none update --self
   sudo tlmgr --verify-repo=none install $(cut -d' ' -f2 DEPENDS.txt | uniq)
   sudo tlmgr --verify-repo=none update $(cut -d' ' -f2 DEPENDS.txt | uniq)
+  sudo apt-get update
+  sudo apt-get install -y libssl-dev libjpeg-dev
+  git clone https://github.com/qpdf/qpdf
+  cd qpdf || exit 1
+  cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
+  cmake --build build
+  sudo cmake --install build
+  cd ..
+  rm -rf qpdf
+  export LD_LIBRARY_PATH=/usr/local/lib
+  sudo ldconfig
+  qpdf --version
 merge:
   script: |-
     l3build check
