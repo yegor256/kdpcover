@@ -24,7 +24,7 @@ module = "kdpcover"
 ctanupload = true
 typesetopts = "-interaction=batchmode -shell-escape -halt-on-error"
 checkopts = "-interaction=batchmode -shell-escape -halt-on-error"
-docfiles = {"yb-book-logo.pdf", "cactus.pdf", "kdpcover-signature.pdf"}
+docfiles = {"yb-book-logo.pdf", "cactus.pdf", "kdpcover-signature.pdf", "kdpcover-vol-1.pdf", "kdpcover-vol-2.pdf", "kdpcover-vol-3.pdf", "kdpcover-vol-4.pdf"}
 tagfiles = {"build.lua", "kdpcover.dtx"}
 cleanfiles = {"*.glo", "*.fls", "*.idx", "*.out", "*.fdb_latexmk", "*.aux", "*.sty", "*.zip", "kdpcover.pdf"}
 
