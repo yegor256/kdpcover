@@ -270,8 +270,10 @@
     \iexec[trace,quiet,stdout=kdpcover-pages-count.txt]
       {qpdf --show-npages #1 | tr -d '[[:space:]]' | \{ cat; echo \%; \}}
     \newread\kdp@pagescount
-    \openin\kdp@pagescount=kdpcover-pages-count.txt
-    \read\kdp@pagescount to \kdp@pages
+    \openin1=kdpcover-pages-count.txt
+    \read1 to \temp
+    \closein1
+    \kdp@pages=\temp
   },
   6x9/.code = {
     \setlength\kdp@xsize{6in}
@@ -319,7 +321,7 @@
 \newlength\kdp@height
   \setlength\kdp@height{0.125in + \kdp@ysize + 0.125in}
 \newlength\kdp@width
-  \setlength\kdp@width{0.125in + \kdp@xsize + 0.0025in * \kdp@pages + \kdp@xsize + 0.125in}
+  \setlength\kdp@width{0.125in + \kdp@xsize + 0.125in + \kdp@xsize + 0.0025in * \kdp@pages}
 \makeatother
 %    \end{macrocode}
 
