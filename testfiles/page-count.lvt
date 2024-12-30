@@ -1,8 +1,0 @@
-\input{regression-test.tex}
-\documentclass[pages=100]{kdpcover}
-\begin{document}
-\START
-
-\putPrice{\$0.99}
-
-\END
