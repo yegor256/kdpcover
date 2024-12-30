@@ -51,6 +51,6 @@ uploadconfig = {
 function update_tag(file, content, tagname, tagdate)
   return string.gsub(
     string.gsub(content, "0%.0%.0", tagname),
-    "0000%-00%-00", os.date("%Y.%m.%d")
+    "0000/00/00", os.date("%Y/%m/%d")
   )
 end

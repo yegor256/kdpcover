@@ -273,13 +273,16 @@
     \read\kdp@pagescount to \kdp@pages
   },
   6x9/.code = {
-    \setlength\kdp@xsize{6in}\setlength\kdp@ysize{9in}
+    \setlength\kdp@xsize{6in}
+    \setlength\kdp@ysize{9in}
   },
   7x10/.code = {
-    \setlength\kdp@xsize{7in}\setlength\kdp@ysize{10in}
+    \setlength\kdp@xsize{7in}
+    \setlength\kdp@ysize{10in}
   },
   8x10/.code = {
-    \setlength\kdp@xsize{8in}\setlength\kdp@ysize{10in}
+    \setlength\kdp@xsize{8in}
+    \setlength\kdp@ysize{10in}
   },
   pages/.code = {
     \renewcommand*\kdp@pages{#1}
@@ -480,6 +483,7 @@
   \setlength\parskip{0pt}%
   \interfootnotelinepenalty=10000%
 }
+\endinput
 %    \end{macrocode}
 
 % \Finale
