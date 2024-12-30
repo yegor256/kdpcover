@@ -8,6 +8,7 @@ hard pgfopts
 hard setspace
 hard textpos
 hard xcolor
+soft href-ul
 soft l3build
 soft libertine
 soft scheme-basic
