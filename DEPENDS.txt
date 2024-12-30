@@ -10,6 +10,7 @@ hard textpos
 hard xcolor
 soft docshots
 soft href-ul
+soft hypdoc
 soft l3build
 soft libertine
 soft scheme-basic
