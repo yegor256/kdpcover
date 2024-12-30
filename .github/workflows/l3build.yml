@@ -45,7 +45,7 @@ jobs:
         with:
           update-all-packages: true
           package-file: DEPENDS.txt
-      - run: l3build ctan --show-log-on-error --halt-on-error
+      - run: l3build ctan --show-log-on-error --halt-on-error || cat build/doc/kdpcover.log
       - run: |
           mkdir build/gh-pages
           cp build/distrib/tds/tex/latex/kdpcover/kdpcover.sty build/gh-pages
