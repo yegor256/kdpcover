@@ -28,10 +28,10 @@ install: |-
   sudo tlmgr --verify-repo=none update --self
   sudo tlmgr --verify-repo=none install $(cut -d' ' -f2 DEPENDS.txt | uniq)
   sudo tlmgr --verify-repo=none update $(cut -d' ' -f2 DEPENDS.txt | uniq)
-  sudo apt-get install software-properties-common
+  sudo apt-get install -y software-properties-common
   sudo add-apt-repository ppa:george-edison55/cmake-3.x
   sudo apt-get update
-  sudo apt-get install cmake
+  sudo apt-get install -y cmake
   sudo apt-get install -y libssl-dev libjpeg-dev
   git clone https://github.com/qpdf/qpdf
   cd qpdf || exit 1
