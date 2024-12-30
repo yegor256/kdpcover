@@ -8,7 +8,6 @@ hard pgfopts
 hard setspace
 hard textpos
 hard xcolor
-hard xkeyval
 soft l3build
 soft scheme-basic
 soft tools

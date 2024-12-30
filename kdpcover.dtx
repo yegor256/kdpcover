@@ -247,39 +247,46 @@
 \makeatletter
 \newcommand*\kdp@pages{100}
 \newlength\kdp@xsize
-\setlength\kdp@xsize{6in}
+  \setlength\kdp@xsize{6in}
 \newlength\kdp@ysize
-\setlength\kdp@ysize{9in}
+  \setlength\kdp@ysize{9in}
 \makeatother
 %    \end{macrocode}
 
-% Then, we include |iexec| for being able to execute |qpdf|:
+% Then, we include |iexec| for being able to execute |qpdf| and |git|:
 %    \begin{macrocode}
 \RequirePackage{iexec}
 %    \end{macrocode}
 
-% Then, we parse class options:
+% Then, we parse class options with the help of the |pgfopts| package:
 %    \begin{macrocode}
-\RequirePackage{xkeyval}
+\RequirePackage{pgfopts}
 \makeatletter
-\DeclareOptionX{6x9}
-  {\setlength\kdp@xsize{6in}\setlength\kdp@ysize{9in}}
-\DeclareOptionX{7x10}
-  {\setlength\kdp@xsize{7in}\setlength\kdp@ysize{10in}}
-\DeclareOptionX{8x10}
-  {\setlength\kdp@xsize{8in}\setlength\kdp@ysize{10in}}
-\DeclareOptionX{pages}
-  {\renewcommand*\kdp@pages{#1}}
-\newif\ifkdp@barless
-\DeclareOptionX{barless}{\kdp@barlesstrue}
-\DeclareOptionX{pdf}{%
-  \iexec[trace,quiet,stdout=kdpcover-pages-count.txt]
-    {qpdf --show-npages #1 | tr -d '[[:space:]]' | \{ cat; echo \%; \}}%
-  \newread\kdp@pagescount%
-  \openin\kdp@pagescount=kdpcover-pages-count.txt
-  \read\kdp@pagescount to \kdp@pages%
+\pgfkeys{
+  /kdp/.cd,
+  barless/.store in = \kdp@barless,
+  pdf/.code = {
+    \iexec[trace,quiet,stdout=kdpcover-pages-count.txt]
+      {qpdf --show-npages #1 | tr -d '[[:space:]]' | \{ cat; echo \%; \}}
+    \newread\kdp@pagescount
+    \openin\kdp@pagescount=kdpcover-pages-count.txt
+    \read\kdp@pagescount to \kdp@pages
+  },
+  6x9/.code = {
+    \setlength\kdp@xsize{6in}\setlength\kdp@ysize{9in}
+  },
+  7x10/.code = {
+    \setlength\kdp@xsize{7in}\setlength\kdp@ysize{10in}
+  },
+  8x10/.code = {
+    \setlength\kdp@xsize{8in}\setlength\kdp@ysize{10in}
+  },
+  pages/.code = {
+    \renewcommand*\kdp@pages{#1}
+  }
 }
-\ProcessOptionsX\relax\makeatother
+\ProcessPgfPackageOptions{/kdp}
+\makeatother
 %    \end{macrocode}
 
 % Then, we include a few useful packages:
@@ -298,16 +305,16 @@
   \setstretch{1.2}
 %    \end{macrocode}
 
-% Then, we set calculate size.
+% Then, we calculate size.
 % The height of the page is 9 inches plus 0.125 "bleed" on top and
 % on the bottom, see \href{https://kdp.amazon.com/en_US/help/topic/G201953020}{this}.
 % The width is 6 inches plus 0.125 "bleed" on each side. The width of the
 % "spine" depends on the amount of pages in the book.
 %    \begin{macrocode}
 \makeatletter
-  \newlength\kdp@height
+\newlength\kdp@height
   \setlength\kdp@height{0.125in + \kdp@ysize + 0.125in}
-  \newlength\kdp@width
+\newlength\kdp@width
   \setlength\kdp@width{
     0.125in + \kdp@xsize
     + 0.0025in * \kdp@pages
@@ -333,8 +340,9 @@
 % \begin{macro}{\putSpine}
 % Then, we define |\putSpine|:
 %    \begin{macrocode}
-\makeatletter\newcommand\putSpine[2][kdpcover-signature]{%
-  \ifkdp@barless\else
+\makeatletter
+\newcommand\putSpine[2][kdpcover-signature]{%
+  \ifdefined\kdp@barless\else
     \begin{textblock}{2.4}[0.5,0](8,0)%
       \begin{tikzpicture}%
         \node [rectangle, inner sep=0em, fill=black,
@@ -354,7 +362,8 @@
   \begin{textblock}{2.4}[0.5,1](8,14)%
     \centerline{\includegraphics[width=0.32in]{#1}}%
   \end{textblock}%
-}\makeatother
+}
+\makeatother
 %    \end{macrocode}
 % \end{macro}
 
