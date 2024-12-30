@@ -38,6 +38,7 @@ jobs:
         os: [ubuntu-24.04, macos-15]
     steps:
       - uses: actions/checkout@v4
+      - uses: yegor256/qpdf-action@master
       - run: sudo apt-get -y install ghostscript
         if: matrix.os == 'ubuntu-24.04'
       - uses: teatimeguest/setup-texlive-action@v3.3.4
