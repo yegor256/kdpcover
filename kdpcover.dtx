@@ -245,7 +245,8 @@
 % Then, we define a few internal commands:
 %    \begin{macrocode}
 \makeatletter
-\newcommand*\kdp@pages{100}
+\newcount\kdp@pages
+  \kdp@pages=100
 \newlength\kdp@xsize
   \setlength\kdp@xsize{6in}
 \newlength\kdp@ysize
@@ -285,7 +286,7 @@
     \setlength\kdp@ysize{10in}
   },
   pages/.code = {
-    \renewcommand*\kdp@pages{#1}
+    \kdp@pages=#1
   }
 }
 \ProcessPgfPackageOptions{/kdp}
