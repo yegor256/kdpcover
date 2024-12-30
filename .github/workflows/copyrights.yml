@@ -20,22 +20,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 ---
-docker:
-  image: yegor256/rultor-latex
-install: |-
-  sudo apt-get update
-  sudo tlmgr option repository ctan
-  sudo tlmgr --verify-repo=none update --self
-  sudo tlmgr --verify-repo=none install $(cut -d' ' -f2 DEPENDS.txt | uniq)
-  sudo tlmgr --verify-repo=none update $(cut -d' ' -f2 DEPENDS.txt | uniq)
-merge:
-  script: |-
-    l3build check
-release:
-  script: |-
-    l3build tag ${tag}
-    l3build ctan --show-log-on-error
-    texsc
-    texqc
-    git commit -am "version set to ${tag}"
-    echo 'y' | l3build upload --halt-on-error
+name: copyrights
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  copyrights:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: yegor256/copyrights-action@0.0.8
