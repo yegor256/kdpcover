@@ -268,8 +268,7 @@
   barless/.store in = \kdp@barless,
   pdf/.code = {
     \iexec[trace,quiet,stdout=kdpcover-pages-count.txt]
-      {qpdf --show-npages #1 | tr -d '[[:space:]]' | \{ cat; echo \%; \}}
-    \newread\kdp@pagescount
+      {qpdf --show-npages #1 | tr -d '[[:space:]]'}
     \openin1=kdpcover-pages-count.txt
     \read1 to \temp
     \closein1
