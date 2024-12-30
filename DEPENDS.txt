@@ -9,6 +9,7 @@ hard setspace
 hard textpos
 hard xcolor
 soft l3build
+soft libertine
 soft scheme-basic
 soft tools
 soft xetex
