@@ -51,10 +51,10 @@ jobs:
           cp build/distrib/tds/tex/latex/kdpcover/kdpcover.sty build/gh-pages
           sed -i "s/0\.0\.0/$(date +%H.%M.%S)/g" build/gh-pages/kdpcover.sty
           sed -i "s|0000/00/00|$(date +%Y/%m/%d)|g" build/gh-pages/kdpcover.sty
-        if: github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-22.04'
+        if: github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-24.04'
       - uses: JamesIves/github-pages-deploy-action@v4.7.2
         with:
           branch: gh-pages
           folder: build/gh-pages
           clean: true
-        if: github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-22.04'
+        if: github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-24.04'
