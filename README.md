@@ -35,7 +35,7 @@ and then use in the preamble:
 
 Otherwise, you can download
 [`kdpcover.cls`](https://yegor256.github.io/kdpcover/kdpcover.cls) and
-add to your project.
+use in your document.
 
 If you want to contribute yourself, make a fork, then create a branch,
 then run `make` in the root directory.
