@@ -34,7 +34,7 @@ and then use in the preamble:
 ```
 
 Otherwise, you can download
-[`kdpcover.sty`](https://yegor256.github.io/kdpcover/kdpcover.sty) and
+[`kdpcover.cls`](https://yegor256.github.io/kdpcover/kdpcover.cls) and
 add to your project.
 
 If you want to contribute yourself, make a fork, then create a branch,
