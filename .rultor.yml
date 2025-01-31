@@ -43,6 +43,7 @@ merge:
   script: |-
     l3build check
 release:
+  pre: false
   script: |-
     l3build tag ${tag}
     l3build ctan --show-log-on-error
