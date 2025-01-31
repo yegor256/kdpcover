@@ -28,7 +28,7 @@ install: |-
   sudo tlmgr --verify-repo=none install $(cut -d' ' -f2 DEPENDS.txt | uniq)
   sudo tlmgr --verify-repo=none update $(cut -d' ' -f2 DEPENDS.txt | uniq)
   sudo apt-get update -y
-  sudo apt-get install -y cmake libssl-dev libjpeg-dev
+  sudo apt-get install --yes cmake libssl-dev libjpeg-dev
   git clone https://github.com/qpdf/qpdf
   cd qpdf || exit 1
   cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
