@@ -30,6 +30,7 @@ name: l3build
       - master
 jobs:
   l3build:
+    timeout-minutes: 15
     runs-on: ${{ matrix.os }}
     env:
       TERM: xterm-256color
