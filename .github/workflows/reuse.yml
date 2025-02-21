@@ -21,7 +21,7 @@
 # SOFTWARE.
 ---
 # yamllint disable rule:line-length
-name: l3build
+name: reuse
 'on':
   push:
     branches:
@@ -30,35 +30,9 @@ name: l3build
     branches:
       - master
 jobs:
-  l3build:
+  reuse:
     timeout-minutes: 15
-    runs-on: ${{ matrix.os }}
-    env:
-      TERM: xterm-256color
-    strategy:
-      matrix:
-        os: [ubuntu-24.04]
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - uses: yegor256/qpdf-action@master
-      - run: sudo apt-get install --yes ghostscript
-        if: matrix.os == 'ubuntu-24.04'
-      - run: brew install ghostscript
-        if: matrix.os == 'macos-15'
-      - uses: teatimeguest/setup-texlive-action@v3.3.4
-        with:
-          update-all-packages: true
-          package-file: DEPENDS.txt
-      - run: l3build ctan --show-log-on-error --halt-on-error
-      - run: |
-          mkdir build/gh-pages
-          cp build/distrib/tds/tex/latex/kdpcover/kdpcover.cls build/gh-pages
-          sed -i "s/0\.0\.0/$(date +%H.%M.%S)/g" build/gh-pages/kdpcover.cls
-          sed -i "s|0000/00/00|$(date +%Y/%m/%d)|g" build/gh-pages/kdpcover.cls
-        if: github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-24.04'
-      - uses: JamesIves/github-pages-deploy-action@v4.7.3
-        with:
-          branch: gh-pages
-          folder: build/gh-pages
-          clean: true
-        if: github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-24.04'
+      - uses: fsfe/reuse-action@v5
