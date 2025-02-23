@@ -1,12 +1,3 @@
-%% (The MIT License)
-%%
-%% SPDX-FileCopyrightText: Copyright (c) 2021-2025 Yegor Bugayenko
-%% SPDX-License-Identifier: MIT
-
-\input docstrip.tex
-\keepsilent
-\usedir{macros/latex/contrib/kdpcover}
-\preamble
 (The MIT License)
 
 Copyright (c) 2021-2025 Yegor Bugayenko
@@ -28,11 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-\endpreamble
-\generate{\file{kdpcover.cls}{\from{kdpcover.dtx}{class}}}
-\obeyspaces
-\Msg{To finish the installation you have to move the ".cls"}
-\Msg{file into a directory searched by TeX. To produce the}
-\Msg{documentation run the file ".dtx" through LaTeX. If any}
-\Msg{questions, submit a new GitHub issue.}
-\endbatchfile
