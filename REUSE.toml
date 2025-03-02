@@ -20,7 +20,6 @@ path = [
     ".gitignore",
     ".gitleaksignore",
     ".pdd",
-    ".texsc",
     ".xcop",
     "DEPENDS.txt",
     "Gemfile.lock",
