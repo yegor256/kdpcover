@@ -31,7 +31,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{kdpcover}
-[2025/03/02 07.11.13 Cover for Kindle Direct Publishing books]
+[2025/03/02 07.12.16 Cover for Kindle Direct Publishing books]
 
 
 
@@ -214,7 +214,7 @@
 
 \newcommand\putCopyright[2]{%
   \begin{textblock}{4}[0,1](1,14)%
-    \small (c)%
+    \small (c)~%
     #1 #2%
   \end{textblock}%
 }
