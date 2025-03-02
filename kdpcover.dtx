@@ -248,6 +248,9 @@
   /kdp/.cd,
   barless/.store in = \kdp@barless,
   pdf/.code = {
+    \IfFileExists{#1}
+      {}
+      {\PackageError{kdpcover}{The "#1" file is absent}{}}%
     \iexec[trace,quiet,stdout=kdpcover-pages-count.txt]
       {qpdf --show-npages --no-warn #1 | tr -d '[[:space:]]'}
     \openin1=kdpcover-pages-count.txt
