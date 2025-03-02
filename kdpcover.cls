@@ -31,7 +31,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{kdpcover}
-[2025/03/02 07.12.16 Cover for Kindle Direct Publishing books]
+[2025/03/02 07.14.03 Cover for Kindle Direct Publishing books]
 
 
 
@@ -74,6 +74,9 @@
   /kdp/.cd,
   barless/.store in = \kdp@barless,
   pdf/.code = {
+    \IfFileExists{#1}
+      {}
+      {\PackageError{kdpcover}{The "#1" file is absent}{}}%
     \iexec[trace,quiet,stdout=kdpcover-pages-count.txt]
       {qpdf --show-npages --no-warn #1 | tr -d '[[:space:]]'}
     \openin1=kdpcover-pages-count.txt
