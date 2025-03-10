@@ -31,7 +31,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{kdpcover}
-[2025/03/02 10.16.47 Cover for Kindle Direct Publishing books]
+[2025/03/10 13.40.08 Cover for Kindle Direct Publishing books]
 
 
 
