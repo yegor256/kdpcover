@@ -283,7 +283,8 @@
 %    \begin{macrocode}
 \RequirePackage{anyfontsize}
 \RequirePackage{tikz}
-\RequirePackage[letterspace=-50]{microtype}
+\PassOptionsToPackage{letterspace=-50}{microtype}
+\RequirePackage{microtype}
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{calc}
@@ -329,7 +330,8 @@
 
 % Then, we set coordinates using |textpos|:
 %    \begin{macrocode}
-\RequirePackage[absolute]{textpos}
+\PassOptionsToPackage{absolute}{textpos}
+\RequirePackage{textpos}
 \TPGrid{16}{16}
 %    \end{macrocode}
 
