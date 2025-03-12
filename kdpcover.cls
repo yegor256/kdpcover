@@ -31,7 +31,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{kdpcover}
-[2025/03/10 13.40.08 Cover for Kindle Direct Publishing books]
+[2025/03/12 08.45.04 Cover for Kindle Direct Publishing books]
 
 
 
@@ -105,7 +105,8 @@
 
 \RequirePackage{anyfontsize}
 \RequirePackage{tikz}
-\RequirePackage[letterspace=-50]{microtype}
+\PassOptionsToPackage{letterspace=-50}{microtype}
+\RequirePackage{microtype}
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{calc}
@@ -135,7 +136,8 @@
 }
 \makeatother
 
-\RequirePackage[absolute]{textpos}
+\PassOptionsToPackage{absolute}{textpos}
+\RequirePackage{textpos}
 \TPGrid{16}{16}
 
 \makeatletter
