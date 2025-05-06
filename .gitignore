@@ -1,3 +1,6 @@
+_minted-*
+.DS_Store
+.idea/
 *.aux
 *.bbl
 *.bcf
@@ -18,9 +21,6 @@
 *.tex
 *.toc
 *.zip
-.DS_Store
-.idea/
-_minted-*
 build/
 kdpcover.pdf
 node_modules/
