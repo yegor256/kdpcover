@@ -26,7 +26,7 @@ jobs:
         if: matrix.os == 'ubuntu-24.04'
       - run: brew install ghostscript
         if: matrix.os == 'macos-15'
-      - uses: teatimeguest/setup-texlive-action@v3.3.4
+      - uses: teatimeguest/setup-texlive-action@v3.4.1
         with:
           update-all-packages: true
           package-file: DEPENDS.txt
