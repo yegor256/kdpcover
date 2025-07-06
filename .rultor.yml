@@ -5,7 +5,7 @@
 docker:
   image: yegor256/latex
 install: |-
-  sudo update-depends.sh "$(pwd)/DEPENDS.txt"
+  sudo /usr/bin/update-depends.sh "$(pwd)/DEPENDS.txt"
 merge:
   script: |-
     l3build check
