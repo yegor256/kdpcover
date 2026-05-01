@@ -27,7 +27,7 @@ jobs:
       - run: brew install ghostscript
         if: matrix.os == 'macos-15'
       - run: sed -E 's/^(hard|soft)[[:space:]]+//' DEPENDS.txt > .texlive-packages.txt
-      - uses: zauguin/install-texlive@v4.0.0
+      - uses: zauguin/install-texlive@v4.3
         with:
           package_file: .texlive-packages.txt
           texlive_version: 2025
