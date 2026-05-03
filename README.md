@@ -1,6 +1,6 @@
 # LaTeX Class for KDP Book Covers
 
-[![make](https://github.com/yegor256/kdpcover/actions/workflows/l3build.yml/badge.svg)](https://github.com/yegor256/kdpcover/actions/workflows/l3build.yml)
+[![l3build](https://github.com/yegor256/kdpcover/actions/workflows/l3build.yml/badge.svg)](https://github.com/yegor256/kdpcover/actions/workflows/l3build.yml)
 [![CTAN](https://img.shields.io/ctan/v/kdpcover)](https://ctan.org/pkg/kdpcover)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/kdpcover/blob/master/LICENSE.txt)
 
@@ -9,10 +9,10 @@ This LaTeX class I use to format covers for
 which I sell [on Amazon](https://www.amazon.com/Yegor-Bugayenko/e/B01AM1QMDK).
 The problem this class solves is
 [the necessity](https://kdp.amazon.com/en_US/help/topic/G201953020)
-to change the size of the cover PDF respectfully
+to change the size of the cover PDF according
 to the number of pages in the book — the bigger
 the book, the larger must be the cover. The provided class makes necessary
-calculations on-fly, using the [`qpdf`](http://qpdf.sourceforge.net/) tool.
+calculations on-the-fly, using the [`qpdf`](http://qpdf.sourceforge.net/) tool.
 Obviously,
 you need to have it installed. Also, you must
 run `pdflatex` with the `--shell-escape` option,
@@ -38,7 +38,7 @@ Otherwise, you can download
 use in your document.
 
 If you want to contribute yourself, make a fork, then create a branch,
-then run `make` in the root directory.
+then run `l3build check` in the root directory.
 It should compile everything without errors. If not, submit an issue and wait.
-Otherwise, make your changes and then run `make` again. If the build is
+Otherwise, make your changes and then run `l3build check` again. If the build is
 still clean, submit a pull request.
