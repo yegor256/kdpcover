@@ -32,6 +32,11 @@ jobs:
           package_file: .texlive-packages.txt
           texlive_version: 2025
       - run: l3build ctan --show-log-on-error --halt-on-error
+      - if: failure()
+        run: |
+          echo '::group::kdpcover.log'
+          cat build/doc/kdpcover.log 2>/dev/null || echo 'no build/doc/kdpcover.log'
+          echo '::endgroup::'
       - run: |
           mkdir build/gh-pages
           cp build/distrib/tds/tex/latex/kdpcover/kdpcover.cls build/gh-pages
