@@ -12,7 +12,6 @@ soft docshots
 soft href-ul
 soft hypdoc
 soft l3build
-soft paratype
 soft scheme-basic
 soft tools
 soft xetex
