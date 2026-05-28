@@ -31,7 +31,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{kdpcover}
-[2026-05-25 03.43.19 Cover for Kindle Direct Publishing books]
+[2026-05-28 06.11.22 Cover for Kindle Direct Publishing books]
 
 
 
@@ -60,10 +60,10 @@
 \makeatletter
 \newcount\kdp@pages
   \kdp@pages=100
-\newlength\kdp@xsize
-  \setlength\kdp@xsize{6in}
-\newlength\kdp@ysize
-  \setlength\kdp@ysize{9in}
+\newlength\kdpxsize
+  \setlength\kdpxsize{6in}
+\newlength\kdpysize
+  \setlength\kdpysize{9in}
 \makeatother
 
 \RequirePackage{iexec}
@@ -85,16 +85,16 @@
     \kdp@pages=\temp
   },
   6x9/.code = {
-    \setlength\kdp@xsize{6in}
-    \setlength\kdp@ysize{9in}
+    \setlength\kdpxsize{6in}
+    \setlength\kdpysize{9in}
   },
   7x10/.code = {
-    \setlength\kdp@xsize{7in}
-    \setlength\kdp@ysize{10in}
+    \setlength\kdpxsize{7in}
+    \setlength\kdpysize{10in}
   },
   8x10/.code = {
-    \setlength\kdp@xsize{8in}
-    \setlength\kdp@ysize{10in}
+    \setlength\kdpxsize{8in}
+    \setlength\kdpysize{10in}
   },
   pages/.code = {
     \kdp@pages=#1
@@ -115,23 +115,25 @@
 
 \makeatletter
 \newlength\kdp@height
-  \setlength\kdp@height{0.125in + \kdp@ysize + 0.125in}
 \newlength\kdp@width
-  \setlength\kdp@width{
-    0.125in + \kdp@xsize
-    + 0.125in + \kdp@xsize
-    + 0.0025in * \kdp@pages}
 \makeatother
 
 \RequirePackage{geometry}
 \makeatletter
-\geometry{
-  paperwidth=\kdp@width,
-  paperheight=\kdp@height,
-  left=0pt,
-  right=0pt,
-  top=0pt,
-  bottom=0pt
+\AddToHook{begindocument/before}{%
+  \setlength\kdp@height{0.125in + \kdpysize + 0.125in}%
+  \setlength\kdp@width{
+    0.125in + \kdpxsize
+    + 0.125in + \kdpxsize
+    + 0.0025in * \kdp@pages}%
+  \geometry{
+    paperwidth=\kdp@width,
+    paperheight=\kdp@height,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt
+  }%
 }
 \makeatother
 
