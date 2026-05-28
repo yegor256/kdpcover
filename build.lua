@@ -11,7 +11,7 @@ cleanfiles = {"*.glo", "*.fls", "*.idx", "*.out", "*.fdb_latexmk", "*.aux", "*.s
 
 uploadconfig = {
   pkg = "kdpcover",
-  version = "0.0.0 0000-00-00",
+  version = "0.7.0 2026-05-28",
   author = "Yegor Bugayenko",
   uploader = "Yegor Bugayenko",
   email = "yegor256@gmail.com",
