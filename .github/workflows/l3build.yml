@@ -30,7 +30,7 @@ jobs:
       - uses: zauguin/install-texlive@v4.4.0
         with:
           package_file: .texlive-packages.txt
-          texlive_version: 2025
+          texlive_version: 2026
       - run: l3build ctan --show-log-on-error --halt-on-error
       - if: failure()
         run: |
