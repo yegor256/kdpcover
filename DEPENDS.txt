@@ -8,7 +8,9 @@ hard pgfopts
 hard setspace
 hard textpos
 hard xcolor
+soft bookmark
 soft docshots
+soft fail-fast
 soft href-ul
 soft hypdoc
 soft l3build

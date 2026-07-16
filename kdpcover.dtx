@@ -36,9 +36,13 @@
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{lmodern}
+\usepackage{fail-fast}
 \usepackage{microtype}
 \AddToHook{env/verbatim/begin}{\microtypesetup{protrusion=false}}
+\PassOptionsToPackage{hyperindex=false}{hyperref}
 \usepackage{href-ul}
+\usepackage{bookmark}
+\renewcommand{\RerunFileCheck}[3]{\AddToHook{enddocument/info}{#2}}
 \usepackage[dtx,margin=0,small]{docshots}
 \usepackage{graphicx}
 \PageIndex
