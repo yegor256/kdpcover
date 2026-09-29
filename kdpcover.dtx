@@ -146,6 +146,28 @@
 %\fi
 % \end{macro}
 
+% \begin{macro}{paper}
+% The |paper| option selects the paper stock the book is printed on, which
+% determines how thick a single page is and therefore how broad the spine
+% must be. Amazon publishes a distinct figure for each stock, and the width
+% of the cover is wrong if the incorrect one is used:
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+\documentclass[pages=200,paper=white]{kdpcover}
+\begin{document}
+\end{document}
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+% Four values are permitted, matching the four stocks offered by KDP:
+% |cream| (0.0025in per page), |white| (0.002252in),
+% |standardcolor| (0.002252in) and |premiumcolor| (0.002347in). The default
+% is |cream|, which is the figure this class has always used.
+% \end{macro}
+
 % \begin{macro}{barless}
 % To eliminate the black bar at the centre of the page, the |barless|
 % option suffices:
@@ -237,6 +259,8 @@
   \setlength\kdpxsize{6in}
 \newlength\kdpysize
   \setlength\kdpysize{9in}
+\newlength\kdp@thickness
+  \setlength\kdp@thickness{0.0025in}
 \makeatother
 %    \end{macrocode}
 
@@ -278,7 +302,12 @@
   },
   pages/.code = {
     \kdp@pages=#1
-  }
+  },
+  paper/.is choice,
+  paper/cream/.code = {\setlength\kdp@thickness{0.0025in}},
+  paper/white/.code = {\setlength\kdp@thickness{0.002252in}},
+  paper/standardcolor/.code = {\setlength\kdp@thickness{0.002252in}},
+  paper/premiumcolor/.code = {\setlength\kdp@thickness{0.002347in}}
 }
 \ProcessPgfPackageOptions{/kdp}
 \makeatother
@@ -304,7 +333,10 @@
 % The height of the page is 9 inches plus 0.125 "bleed" on top and
 % on the bottom, see \href{https://kdp.amazon.com/en_US/help/topic/G201953020}{this}.
 % The width is 6 inches plus 0.125 "bleed" on each side. The width of the
-% "spine" depends on the amount of pages in the book.
+% "spine" depends on the amount of pages in the book and on the thickness
+% of a single page, which in turn depends on the paper stock selected
+% through the |paper| option.
+% \changes{v0.8.0}{2026/08/10}{The thickness of a page is taken from the \texttt{paper} option, instead of always assuming cream paper.}
 %    \begin{macrocode}
 \makeatletter
 \newlength\kdp@height
@@ -321,7 +353,7 @@
   \setlength\kdp@width{
     0.125in + \kdpxsize
     + 0.125in + \kdpxsize
-    + 0.0025in * \kdp@pages}%
+    + \kdp@thickness * \kdp@pages}%
   \geometry{
     paperwidth=\kdp@width,
     paperheight=\kdp@height,

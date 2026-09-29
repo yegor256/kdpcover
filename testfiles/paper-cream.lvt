@@ -1,0 +1,15 @@
+% SPDX-FileCopyrightText: Copyright (c) 2021-2026 Yegor Bugayenko
+% SPDX-License-Identifier: MIT
+
+\input{regression-test.tex}
+\documentclass[6x9,pages=200,barless]{kdpcover}
+\begin{document}
+\START
+
+% Cream is the default, so this must stay exactly what it always was:
+% 0.125in + 6in + 200 x 0.0025in + 6in + 0.125in, which is 12.75in.
+% The recorded 921.4769pt is 12.7505in, the same 16-bit rounding of
+% the fraction that the class has produced since the first version.
+\showthe\paperwidth
+
+\END
