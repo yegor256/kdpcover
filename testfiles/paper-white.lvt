@@ -1,0 +1,15 @@
+% SPDX-FileCopyrightText: Copyright (c) 2021-2026 Yegor Bugayenko
+% SPDX-License-Identifier: MIT
+
+\input{regression-test.tex}
+\documentclass[6x9,pages=200,paper=white,barless]{kdpcover}
+\begin{document}
+\START
+
+% KDP asks for 0.125in + 6in + 200 x 0.002252in + 6in + 0.125in, which
+% is 12.7004in. TeX stores the fraction of a dimension with 16-bit
+% precision, so 0.002252in becomes 0.0022583in and the result is
+% 12.7016in (917.94601pt) -- 0.03mm wider, which no printer can see.
+\showthe\paperwidth
+
+\END
