@@ -57,7 +57,7 @@
 %</driver>
 % \fi
 
-% \title{\includegraphics[width=0.75in]{yb-book-logo.pdf} \\ |kdpcover|: \LaTeX{} Package \\ for Amazon Book Covers\thanks{The sources are on GitHub at \href{https://github.com/yegor256/kdpcover}{yegor256/kdpcover}}}
+% \title{\includegraphics[width=0.75in]{yb-book-logo.pdf} \\ |kdpcover|: \LaTeX{} Class \\ for Amazon Book Covers\thanks{The sources are on GitHub at \href{https://github.com/yegor256/kdpcover}{yegor256/kdpcover}}}
 % \author{Yegor Bugayenko \\ \texttt{yegor256@gmail.com}}
 % \date{\filedate, \fileversion}
 %
@@ -145,6 +145,13 @@
 %\fi
 % \end{macro}
 
+% \begin{macro}{7x10}
+% \begin{macro}{8x10}
+% The |7x10| and |8x10| options set the page dimensions to 7x10 and 8x10
+% inches respectively; |6x9| is the default.
+% \end{macro}
+% \end{macro}
+
 % \begin{macro}{barless}
 % To eliminate the black bar at the centre of the page, the |barless|
 % option suffices:
@@ -165,8 +172,9 @@
 
 % \begin{macro}{\putSpine}
 % The |\putSpine| command places a vertical black spine line containing two
-% white elements: the text at the top and the logo at the bottom. The text
-% should be sufficiently short to avoid contact with the logo. It is sound
+% white elements: the text at the top and the logo at the bottom. The optional
+% argument names the file with the logo, |kdpcover-signature| by default. The
+% text should be sufficiently short to avoid contact with the logo. It is sound
 % practice to record the volume number at the end of the text whenever more
 % than one volume exists, e.g.\ ``my book, vol.\ 1''. The use of small caps
 % within the text alone is recommended.
@@ -174,7 +182,8 @@
 
 % \begin{macro}{\putVolume}
 % This command renders the volume figure. It is deliberately rendered at large
-% size to ensure conspicuousness.
+% size to ensure conspicuousness. Only volumes from 1 to 4 are supported, since
+% the class ships the figures as |kdpcover-vol-1.pdf| through |kdpcover-vol-4.pdf|.
 % \end{macro}
 
 % \begin{macro}{\putVersion}
@@ -299,11 +308,11 @@
   \setstretch{1.2}
 %    \end{macrocode}
 
-% Then, we calculate size.
-% The height of the page is 9 inches plus 0.125 "bleed" on top and
+% Then, we declare the lengths of the page.
+% The height is |\kdpysize| plus 0.125 inches of ``bleed'' on top and
 % on the bottom, see \href{https://kdp.amazon.com/en_US/help/topic/G201953020}{this}.
-% The width is 6 inches plus 0.125 "bleed" on each side. The width of the
-% "spine" depends on the amount of pages in the book.
+% The width is twice |\kdpxsize| plus 0.125 inches of ``bleed'' on each side,
+% plus the ``spine,'' whose width depends on the number of pages in the book.
 %    \begin{macrocode}
 \makeatletter
 \newlength\kdp@height
@@ -311,7 +320,8 @@
 \makeatother
 %    \end{macrocode}
 
-% Then, we set the size of the page, using |geometry|:
+% Then, right before the document begins, we calculate the lengths and set
+% the size of the page, using |geometry|:
 %    \begin{macrocode}
 \RequirePackage{geometry}
 \makeatletter
