@@ -1,0 +1,14 @@
+% SPDX-FileCopyrightText: Copyright (c) 2021-2026 Yegor Bugayenko
+% SPDX-License-Identifier: MIT
+
+\input{regression-test.tex}
+\documentclass[pages=100,6x9]{kdpcover}
+\begin{document}
+\START
+\IfFileExists{./kdpcover-signature.pdf}
+  {\TYPE{signature: found}}
+  {\TYPE{signature: missing}}
+\IfFileExists{./kdpcover-vol-1.pdf}
+  {\TYPE{volume: found}}
+  {\TYPE{volume: missing}}
+\END
