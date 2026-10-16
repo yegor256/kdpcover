@@ -249,6 +249,7 @@
 %    \end{macrocode}
 
 % Then, we include |iexec| for being able to execute |qpdf| and |git|:
+% \changes{v0.6.3}{2026/10/16}{The shell commands avoid \texttt{tr} and single quotes, so the class works on Windows too.}
 %    \begin{macrocode}
 \RequirePackage{iexec}
 %    \end{macrocode}
@@ -266,7 +267,7 @@
       {}
       {\ClassError{kdpcover}{The "#1" file is absent}{}}%
     \iexec[trace,quiet,stdout=kdpcover-pages-count.txt]
-      {qpdf --show-npages --no-warn #1 | tr -d '[[:space:]]'}
+      {qpdf --show-npages --no-warn #1}
     \openin1=kdpcover-pages-count.txt
     \read1 to \temp
     \closein1
@@ -469,7 +470,7 @@
 %    \begin{macrocode}
 \makeatletter
 \newcommand\kdp@gitdate{%
-  \quad\iexec{git log -n 1 --pretty='format:\%ad' --date='format:\%e-\%b-\%Y'}%
+  \quad\iexec{git log -n 1 --pretty=format:\%ad --date=format:\%e-\%b-\%Y}%
 }
 \newcommand\putVersion[1]{%
   \begin{textblock}{4}[0,1](10,14)%
