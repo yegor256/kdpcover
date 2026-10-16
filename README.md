@@ -12,7 +12,7 @@ The problem this class solves is
 to change the size of the cover PDF according
 to the number of pages in the book — the bigger
 the book, the larger must be the cover. The provided class makes necessary
-calculations on-the-fly, using the [`qpdf`](http://qpdf.sourceforge.net/) tool.
+calculations on-the-fly, using the [`qpdf`](https://qpdf.sourceforge.io/) tool.
 Obviously,
 you need to have it installed. Also, you must
 run `pdflatex` with the `--shell-escape` option,
