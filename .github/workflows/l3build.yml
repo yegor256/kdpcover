@@ -16,18 +16,34 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       TERM: xterm-256color
+    defaults:
+      run:
+        shell: bash
     strategy:
       matrix:
-        os: [ubuntu-24.04]
+        os: [ubuntu-24.04, macos-15, windows-2025]
     steps:
       - uses: actions/checkout@v7
       - uses: yegor256/qpdf-action@master
+        if: matrix.os == 'ubuntu-24.04'
       - run: |
           sudo apt-get update --yes
           sudo apt-get install --yes ghostscript
         if: matrix.os == 'ubuntu-24.04'
-      - run: brew install ghostscript
+      - run: brew install ghostscript qpdf
         if: matrix.os == 'macos-15'
+      - if: matrix.os == 'windows-2025'
+        shell: pwsh
+        run: |
+          choco install --yes --no-progress ghostscript qpdf
+          $gs = Get-ChildItem 'C:\Program Files\gs' -Recurse -Filter gswin64c.exe -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $gs) { throw 'gswin64c.exe not found after install' }
+          Write-Host "Ghostscript at $($gs.DirectoryName)"
+          Add-Content -Path $env:GITHUB_PATH -Value $gs.DirectoryName
+          $qpdf = Get-ChildItem 'C:\Program Files' -Recurse -Filter qpdf.exe -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $qpdf) { throw 'qpdf.exe not found after install' }
+          Write-Host "qpdf at $($qpdf.DirectoryName)"
+          Add-Content -Path $env:GITHUB_PATH -Value $qpdf.DirectoryName
       - run: sed -E 's/^(hard|soft)[[:space:]]+//' DEPENDS.txt > .texlive-packages.txt
       - uses: zauguin/install-texlive@v4.4.0
         with:
