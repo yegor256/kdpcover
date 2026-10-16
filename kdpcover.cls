@@ -31,7 +31,8 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{kdpcover}
-[2026-10-08 03.34.43 Cover for Kindle Direct Publishing books]
+[2026-10-16 07.15.00 Cover for Kindle Direct Publishing books]
+
 
 
 
@@ -76,7 +77,7 @@
   pdf/.code = {
     \IfFileExists{#1}
       {}
-      {\PackageError{kdpcover}{The "#1" file is absent}{}}%
+      {\ClassError{kdpcover}{The "#1" file is absent}{}}%
     \iexec[trace,quiet,stdout=kdpcover-pages-count.txt]
       {qpdf --show-npages --no-warn #1 | tr -d '[[:space:]]'}
     \openin1=kdpcover-pages-count.txt
@@ -209,14 +210,19 @@
   \end{textblock}%
 }
 
+\makeatletter
+\newcommand\kdp@gitdate{%
+  \quad\iexec{git log -n 1 --pretty='format:\%ad' --date='format:\%e-\%b-\%Y'}%
+}
 \newcommand\putVersion[1]{%
   \begin{textblock}{4}[0,1](10,14)%
     #1%
-    \IfFileExists{.git}
-      {\quad\iexec{git log -n 1 --pretty='format:\%ad' --date='format:\%e-\%b-\%Y'}}
-      {}%
+    \IfFileExists{.git/HEAD}
+      {\kdp@gitdate}
+      {\IfFileExists{.git}{\kdp@gitdate}{}}%
   \end{textblock}%
 }
+\makeatother
 
 \newcommand\putCopyright[2]{%
   \begin{textblock}{4}[0,1](1,14)%
