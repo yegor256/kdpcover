@@ -31,7 +31,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{kdpcover}
-[2026-10-16 09.22.04 Cover for Kindle Direct Publishing books]
+[2026-10-16 12.17.18 Cover for Kindle Direct Publishing books]
 
 
 
@@ -135,12 +135,12 @@
     top=0pt,
     bottom=0pt
   }%
+  \TPGrid{16}{16}%
 }
 \makeatother
 
 \PassOptionsToPackage{absolute}{textpos}
 \RequirePackage{textpos}
-\TPGrid{16}{16}
 
 \makeatletter
 \newcommand\putSpine[2][kdpcover-signature]{%
