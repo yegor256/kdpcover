@@ -1,6 +1,7 @@
 hard anyfontsize
 hard etoolbox
 hard geometry
+hard graphics
 hard iexec
 hard microtype
 hard pgf
@@ -16,5 +17,5 @@ soft hypdoc
 soft l3build
 soft lm
 soft scheme-basic
-soft tools
+hard tools
 soft xetex
