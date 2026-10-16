@@ -1,0 +1,13 @@
+% SPDX-FileCopyrightText: Copyright (c) 2021-2026 Yegor Bugayenko
+% SPDX-License-Identifier: MIT
+
+\input{regression-test.tex}
+\documentclass[pages=100,barless]{kdpcover}
+\begin{document}
+\START
+\OMIT
+\immediate\write18{git init -q .}
+\TIMO
+\renewcommand\iexec[2][]{\TYPE{iexec: #2}}
+\putVersion{1.0}
+\END

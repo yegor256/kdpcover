@@ -459,16 +459,25 @@
 % \end{macro}
 
 % \begin{macro}{\putVersion}
-% Then, we define |\putVersion|:
+% Then, we define |\putVersion|. The date is printed when the current
+% directory is a Git repository, which means that |.git| is either a
+% directory with |HEAD| inside or, in a worktree or a submodule, a plain
+% file. Since kpathsea refuses to open directories, |.git| is checked twice:
+% \changes{v0.6.2}{2026/10/16}{The Git date is printed when \texttt{.git} is a directory, not only when it is a file.}
 %    \begin{macrocode}
+\makeatletter
+\newcommand\kdp@gitdate{%
+  \quad\iexec{git log -n 1 --pretty='format:\%ad' --date='format:\%e-\%b-\%Y'}%
+}
 \newcommand\putVersion[1]{%
   \begin{textblock}{4}[0,1](10,14)%
     #1%
-    \IfFileExists{.git}
-      {\quad\iexec{git log -n 1 --pretty='format:\%ad' --date='format:\%e-\%b-\%Y'}}
-      {}%
+    \IfFileExists{.git/HEAD}
+      {\kdp@gitdate}
+      {\IfFileExists{.git}{\kdp@gitdate}{}}%
   \end{textblock}%
 }
+\makeatother
 %    \end{macrocode}
 % \end{macro}
 
