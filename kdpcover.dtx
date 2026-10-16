@@ -320,8 +320,10 @@
 \makeatother
 %    \end{macrocode}
 
-% Then, right before the document begins, we calculate the lengths and set
-% the size of the page, using |geometry|:
+% Then, right before the document begins, we calculate the lengths, set
+% the size of the page, using |geometry|, and split the page into a 16 by 16
+% grid of |textpos|, which must happen after the size is known:
+% \changes{v0.6.2}{2026/10/16}{The \texttt{textpos} grid is computed from the cover size instead of the letter paper.}
 %    \begin{macrocode}
 \RequirePackage{geometry}
 \makeatletter
@@ -339,15 +341,15 @@
     top=0pt,
     bottom=0pt
   }%
+  \TPGrid{16}{16}%
 }
 \makeatother
 %    \end{macrocode}
 
-% Then, we set coordinates using |textpos|:
+% Then, we load |textpos| with absolute coordinates:
 %    \begin{macrocode}
 \PassOptionsToPackage{absolute}{textpos}
 \RequirePackage{textpos}
-\TPGrid{16}{16}
 %    \end{macrocode}
 
 % \begin{macro}{\putSpine}
