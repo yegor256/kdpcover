@@ -40,10 +40,7 @@ jobs:
           if (-not $gs) { throw 'gswin64c.exe not found after install' }
           Write-Host "Ghostscript at $($gs.DirectoryName)"
           Add-Content -Path $env:GITHUB_PATH -Value $gs.DirectoryName
-          $qpdf = Get-ChildItem 'C:\Program Files' -Recurse -Filter qpdf.exe -ErrorAction SilentlyContinue | Select-Object -First 1
-          if (-not $qpdf) { throw 'qpdf.exe not found after install' }
-          Write-Host "qpdf at $($qpdf.DirectoryName)"
-          Add-Content -Path $env:GITHUB_PATH -Value $qpdf.DirectoryName
+          qpdf --version
       - run: sed -E 's/^(hard|soft)[[:space:]]+//' DEPENDS.txt > .texlive-packages.txt
       - uses: zauguin/install-texlive@v4.4.0
         with:
