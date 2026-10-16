@@ -31,7 +31,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{kdpcover}
-[2026-10-16 12.47.33 Cover for Kindle Direct Publishing books]
+[2026-10-16 15.34.28 Cover for Kindle Direct Publishing books]
 
 
 
@@ -79,7 +79,7 @@
       {}
       {\ClassError{kdpcover}{The "#1" file is absent}{}}%
     \iexec[trace,quiet,stdout=kdpcover-pages-count.txt]
-      {qpdf --show-npages --no-warn #1 | tr -d '[[:space:]]'}
+      {qpdf --show-npages --no-warn #1}
     \openin1=kdpcover-pages-count.txt
     \read1 to \temp
     \closein1
@@ -212,7 +212,7 @@
 
 \makeatletter
 \newcommand\kdp@gitdate{%
-  \quad\iexec{git log -n 1 --pretty='format:\%ad' --date='format:\%e-\%b-\%Y'}%
+  \quad\iexec{git log -n 1 --pretty=format:\%ad --date=format:\%e-\%b-\%Y}%
 }
 \newcommand\putVersion[1]{%
   \begin{textblock}{4}[0,1](10,14)%
